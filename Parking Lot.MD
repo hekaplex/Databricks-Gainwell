@@ -12,6 +12,8 @@
 	1. spark.sql vs Spark SQL
 1. JDBC/ODBC Examples
 1. External library integration
+#### Platform Management
+	1. Partitions - Spark Config uration
 #### Machine Learning
 1. resuable data pipeline
 	1. MLFlow
