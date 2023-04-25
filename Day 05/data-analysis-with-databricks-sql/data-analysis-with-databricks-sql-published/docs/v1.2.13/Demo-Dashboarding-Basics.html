@@ -1,0 +1,462 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+            <head>
+                <meta charset="utf-8">
+                <title>Demo - Dashboarding Basics</title>
+                <link href='https://fonts.googleapis.com/css?family=DM%20Sans' rel='stylesheet' type='text/css'>
+                <style>
+                body {background-color: #f9f7f4;font-family: 'DM Sans', serif;}
+                h2 {color: #ff3621;}
+                h3 {margin-left: 5px}
+                ol {margin-left: 20px; font-family:sans-serif; color: #0873FF;} //E81334 618794
+                ol li {margin-bottom:5px;}
+                td {padding: 5px;border-bottom: 1px solid #ededed;}
+                tr.selected td {color: white;background-color: red;}
+                .monofont {font-family: monospace; font-size: 14px}
+                .content {max-width: 800px; margin: auto; padding-left: 50px}
+                .image-icon-inline {display:inline; vertical-align: middle; margin: 0 10px 0 10px}
+                .instructions-div {padding-left: 5px}
+            </style>
+            </head>
+            <body onload="loaded()">
+                <div class="content">
+                    <img src="https://s3.us-west-2.amazonaws.com/files.training.databricks.com/images/db-academy-rgb-1200px_no_bg.png" 
+                        alt="Databricks Learning" 
+                        style="width: 600px; margin-left: 100px; margin-right: 100px">
+                <hr>
+                <h1>Demo - Dashboarding Basics</h1><div id="inputs">
+                    <p>The two fields below are used to customize queries used in this course.</p>
+                    <p><span style="color:red">Note:</span> If the two fields below do not contain your catalog name and username, you either do not have cookies enabled, or you need to follow the instructions under "The Query Editor" <a href="DAWD-01-2-Demo-A-Simple-but-Quick-Query-Visualization-and-Dashboard.html" target="_blank">here</a>.</p>
+                    <table>
+                        <tr>
+                            <td style="white-space:nowrap">Catalog Name:&nbsp;</td>
+                            <td><input id="catalog_name" type="text" style="width:40em" onchange="update();"></td>
+                        </tr><tr>
+                            <td style="white-space:nowrap">Username:&nbsp;</td>
+                            <td><input id="username" type="text" style="width:40em" onchange="update();"></td>
+                        </tr>
+                    </table>
+                </div><hr>
+<div id="step-1-wrapper" style="width:800px;"><div id="step-1-instruction" style="margin-bottom:1em">    
+
+    <h2><img class="image-icon-inline" src="https://s3.us-west-2.amazonaws.com/files.training.databricks.com/images/step-icon_small.png" alt="heading-icon" />
+    Lesson Objectives</h2>
+    <div class="instructions-div">
+    <p>At the end of this lesson, you will be able to:</p>
+    <ul>
+        <li>Create a dashboard using multiple existing visualizations from Databricks SQL Queries.</li>
+        <li>Create and use queries and dashboards with filters and parameters to allow stakeholders to customize results and visualizations.</li>
+        <li>Share queries and dashboards with stakeholders with appropriate permissions.</li>
+        <li>Organize and label workspace objects, queries and dashboards within the Databricks SQL platform.</li>
+    </ul></div>
+    
+    </div>
+        <div style="display: none;">
+            <div>
+                <textarea id="step-1-test-ta" style="width:100%; padding:10px; overflow-x:auto" rows="2"></textarea>
+                <textarea id="step-1-test-backup" style="display:none;"></textarea>
+            </div>
+            <div style="text-align:right; display: none; margin-top:5px">
+                <button id="step-1-test-show-btn" type="button" style="display:none;" 
+                        onclick="document.getElementById('step-1-sql').style.display = 'block';">Show Answer</button>
+                <button id="step-1-test-btn" type="button"  onclick="
+                    let ta = document.getElementById('step-1-test-ta');
+                    ta.select();
+                    ta.setSelectionRange(0, ta.value.length);
+                    navigator.clipboard.writeText(ta.value);">Copy</button>
+            </div>
+        </div>
+          
+        <div id="step-1-sql" style="width:800px; display: none;">
+            <div>
+                <textarea id="step-1-sql-ta" style="width:100%; padding:10px" rows="2"></textarea>
+                <textarea id="step-1-sql-backup" style="display:none;"></textarea>
+            </div>
+            <div style="text-align:right; margin-top:5px">
+                <button id="step-1-sql-btn" type="button"  onclick="
+                    let ta = document.getElementById('step-1-sql-ta');
+                    ta.select();
+                    ta.setSelectionRange(0, ta.value.length);
+                    navigator.clipboard.writeText(ta.value);">Copy</button>
+            </div>
+        </div>
+        <div id="step-1-after_codebox_instruction" style="margin-bottom:1em"></div></div><hr>
+<div id="step-2-wrapper" style="width:800px;"><div id="step-2-instruction" style="margin-bottom:1em">    
+
+<h2><img class="image-icon-inline" src="https://s3.us-west-2.amazonaws.com/files.training.databricks.com/images/step-icon_small.png" alt="heading-icon" />
+Create Table and Load Data for this Lesson</h2>
+    <div class="instructions-div">
+    <p>Complete the following:</p>
+    <ol>
+        <li>Ensure your catalog and the schema, "dawd_v2" are selected in the dropdowns above the query editor</li>
+        <li>Run the query below</li>
+    </ol>
+    </div>
+    
+    </div>
+        <div style="display: none;">
+            <div>
+                <textarea id="step-2-test-ta" style="width:100%; padding:10px; overflow-x:auto" rows="2"></textarea>
+                <textarea id="step-2-test-backup" style="display:none;"></textarea>
+            </div>
+            <div style="text-align:right; display: none; margin-top:5px">
+                <button id="step-2-test-show-btn" type="button" style="" 
+                        onclick="document.getElementById('step-2-sql').style.display = 'block';">Show Answer</button>
+                <button id="step-2-test-btn" type="button"  onclick="
+                    let ta = document.getElementById('step-2-test-ta');
+                    ta.select();
+                    ta.setSelectionRange(0, ta.value.length);
+                    navigator.clipboard.writeText(ta.value);">Copy</button>
+            </div>
+        </div>
+          
+        <div id="step-2-sql" style="width:800px; ">
+            <div>
+                <textarea id="step-2-sql-ta" style="width:100%; padding:10px" rows="3">DROP TABLE IF EXISTS sales;
+CREATE TABLE sales AS SELECT * FROM delta.`wasbs://courseware@dbacademy.blob.core.windows.net/data-analysis-with-databricks/v03/retail-org/sales/sales_delta`;</textarea>
+                <textarea id="step-2-sql-backup" style="display:none;">DROP TABLE IF EXISTS sales;
+CREATE TABLE sales AS SELECT * FROM delta.`wasbs://courseware@dbacademy.blob.core.windows.net/data-analysis-with-databricks/v03/retail-org/sales/sales_delta`;</textarea>
+            </div>
+            <div style="text-align:right; margin-top:5px">
+                <button id="step-2-sql-btn" type="button"  onclick="
+                    let ta = document.getElementById('step-2-sql-ta');
+                    ta.select();
+                    ta.setSelectionRange(0, ta.value.length);
+                    navigator.clipboard.writeText(ta.value);">Copy</button>
+            </div>
+        </div>
+        <div id="step-2-after_codebox_instruction" style="margin-bottom:1em"></div></div><hr>
+<div id="step-3-wrapper" style="width:800px;"><div id="step-3-instruction" style="margin-bottom:1em">    
+
+<h2><img class="image-icon-inline" src="https://s3.us-west-2.amazonaws.com/files.training.databricks.com/images/step-icon_small.png" alt="heading-icon" />
+Dashboards</h2>
+    <div class="instructions-div">
+    <p>We are now going to combine all the visualizations we created above into a dashboard that will display them all at once and that we can put on a refresh schedule to keep the data that underlies each visualization up-to-date. In a future lesson, we will talk about setting a refresh schedule and subscribing stakeholders to the dashboard's output, so they can always have the newest information.</p>
+    <p>Complete the following:</p>
+    <ol>      
+        <li>Click "Dashboards" in the sidebar menu</li>
+        <li>Click "Create Dashboard"</li>
+        <li>Name the dashboard "Retail Organization"</li>
+        <li>Click "Add", and click "Visualization"</li>
+    </ol>
+    <p>We are presented with a list of queries that have been saved. Although we named our queries based on the type of visualization we made, it makes more sense to name a query based on what it does.</p>
+    <ol start="5">
+        <li>Click "Count Total Sales"</li>
+        <li>Leave "Select existing visualization" selected, and drop down the list directly below. Note we have the results table from our query and our counter visualization, "Total Sales" available to us. Select "Total Sales"</li>
+        <li>Change "Title" to "Total Sales"</li>
+        <li>Optional: write a description</li>
+        <li>Click "Add to dashboard"</li>
+        <li>Repeat steps 4-9 with the "Sales Over Three Months" query ("Sales by Month" and "Sales by Product Category"), "Count Customers by State" query ("Most Active States"), and "All Customers" query ("Customer Locations")</li>
+    </ol>
+    <p>You should have five visualizations in the dashboard</p>
+    <ol start="11">
+        <li>Click "Add", then "Text Box", and type "# Customers and Sales" in the "Edit:" box</li>
+    </ol>
+    <p>Note that text boxes support Markdown.</p>
+    <ol start="12">
+        <li>Click "Add to dashboard"</li>
+        <li>Optional: Move the visualizations around by clicking and dragging each one</li>
+        <li>Optional: Resize each visualization by dragging the lower-right corner of the visualization</li>
+        <li>Optional: Click "Colors" to change the color palette used by visualizations in the dashboard</li>
+        <li>Click "Done Editing" in the upper-right corner</li>
+        <li>Run every query and refresh all visualizations all at once by clicking "Refresh"</li>
+    </ol> 
+    </div>
+    
+    </div>
+        <div style="display: none;">
+            <div>
+                <textarea id="step-3-test-ta" style="width:100%; padding:10px; overflow-x:auto" rows="2"></textarea>
+                <textarea id="step-3-test-backup" style="display:none;"></textarea>
+            </div>
+            <div style="text-align:right; display: none; margin-top:5px">
+                <button id="step-3-test-show-btn" type="button" style="display:none;" 
+                        onclick="document.getElementById('step-3-sql').style.display = 'block';">Show Answer</button>
+                <button id="step-3-test-btn" type="button"  onclick="
+                    let ta = document.getElementById('step-3-test-ta');
+                    ta.select();
+                    ta.setSelectionRange(0, ta.value.length);
+                    navigator.clipboard.writeText(ta.value);">Copy</button>
+            </div>
+        </div>
+          
+        <div id="step-3-sql" style="width:800px; display: none;">
+            <div>
+                <textarea id="step-3-sql-ta" style="width:100%; padding:10px" rows="2"></textarea>
+                <textarea id="step-3-sql-backup" style="display:none;"></textarea>
+            </div>
+            <div style="text-align:right; margin-top:5px">
+                <button id="step-3-sql-btn" type="button"  onclick="
+                    let ta = document.getElementById('step-3-sql-ta');
+                    ta.select();
+                    ta.setSelectionRange(0, ta.value.length);
+                    navigator.clipboard.writeText(ta.value);">Copy</button>
+            </div>
+        </div>
+        <div id="step-3-after_codebox_instruction" style="margin-bottom:1em"></div></div><hr>
+<div id="step-4-wrapper" style="width:800px;"><div id="step-4-instruction" style="margin-bottom:1em">    
+
+<h2><img class="image-icon-inline" src="https://s3.us-west-2.amazonaws.com/files.training.databricks.com/images/step-icon_small.png" alt="heading-icon" />
+Parameterized Queries</h2>
+    <div class="instructions-div">
+    <p>Before we leave this lesson, let's talk about a customization feature we can apply to our queries to give them more flexibility. Query parameters allow us to make changes to our queries without requiring new code to be written.</p>
+    <p>Complete the following:</p>
+    <ol>
+        <li>Go back to the Query Editor and start a new query</li>
+        <li>Paste the query below into the editor and save the query as "Get Product Category"</li>
+</ol>
+    </div>
+    
+    </div>
+        <div style="display: none;">
+            <div>
+                <textarea id="step-4-test-ta" style="width:100%; padding:10px; overflow-x:auto" rows="2"></textarea>
+                <textarea id="step-4-test-backup" style="display:none;"></textarea>
+            </div>
+            <div style="text-align:right; display: none; margin-top:5px">
+                <button id="step-4-test-show-btn" type="button" style="" 
+                        onclick="document.getElementById('step-4-sql').style.display = 'block';">Show Answer</button>
+                <button id="step-4-test-btn" type="button"  onclick="
+                    let ta = document.getElementById('step-4-test-ta');
+                    ta.select();
+                    ta.setSelectionRange(0, ta.value.length);
+                    navigator.clipboard.writeText(ta.value);">Copy</button>
+            </div>
+        </div>
+          
+        <div id="step-4-sql" style="width:800px; ">
+            <div>
+                <textarea id="step-4-sql-ta" style="width:100%; padding:10px" rows="2">SELECT DISTINCT product_category FROM sales;</textarea>
+                <textarea id="step-4-sql-backup" style="display:none;">SELECT DISTINCT product_category FROM sales;</textarea>
+            </div>
+            <div style="text-align:right; margin-top:5px">
+                <button id="step-4-sql-btn" type="button"  onclick="
+                    let ta = document.getElementById('step-4-sql-ta');
+                    ta.select();
+                    ta.setSelectionRange(0, ta.value.length);
+                    navigator.clipboard.writeText(ta.value);">Copy</button>
+            </div>
+        </div>
+        <div id="step-4-after_codebox_instruction" style="margin-bottom:1em"></div></div><hr>
+<div id="step-5-wrapper" style="width:800px;"><div id="step-5-instruction" style="margin-bottom:1em">    
+
+<h3>Writing a Query with Parameters</h3>
+    <div class="instructions-div">
+    <p>Now that we have a query that pulls all product categories from the <span class="monofont">Sales</span> table, let's use this query as a parameter in a second query.</p>
+    <p>Complete the following:</p>
+    <ol start="3">
+        <li>Start a new query, and paste the code below in the editor</li>
+    </ol>
+    <p>Note that the query has empty single quotes.</p>
+    <ol start="4">
+        <li>Place your cursor in-between the single quotes, hover over the "+" symbol, and click "Parameter"</li>
+        <li>Input "category" for the "Keyword" field</li>
+        <li>Drop down "Type" and choose "Query Based Dropdown List"</li>
+        <li>For "Query" choose the query we created above: "Get Product Category"</li>
+        <li>Click "Add Parameter"</li>
+        <li>Save the query as "Total Sales by Product Category"</li>
+    </ol>
+    <p>Note two things: First, we now have a set of double curly braces that contain the word "category". This is where are query parameter was inserted. Finally, note the dropdown list we how have just above the query results window.</p>
+    <ol start="10">
+        <li>Open the dropdown list and choose a Category from the list</li>
+        <li>Click "Apply Changes"</li>
+    </ol>
+    <p>The query is rerun with the chosen product category replacing the location of the query parameter in the query. Thus, we see the Total Sales of the Category we chose.</p>
+    </div>
+    
+    </div>
+        <div style="display: none;">
+            <div>
+                <textarea id="step-5-test-ta" style="width:100%; padding:10px; overflow-x:auto" rows="2"></textarea>
+                <textarea id="step-5-test-backup" style="display:none;"></textarea>
+            </div>
+            <div style="text-align:right; display: none; margin-top:5px">
+                <button id="step-5-test-show-btn" type="button" style="" 
+                        onclick="document.getElementById('step-5-sql').style.display = 'block';">Show Answer</button>
+                <button id="step-5-test-btn" type="button"  onclick="
+                    let ta = document.getElementById('step-5-test-ta');
+                    ta.select();
+                    ta.setSelectionRange(0, ta.value.length);
+                    navigator.clipboard.writeText(ta.value);">Copy</button>
+            </div>
+        </div>
+          
+        <div id="step-5-sql" style="width:800px; ">
+            <div>
+                <textarea id="step-5-sql-ta" style="width:100%; padding:10px" rows="3">SELECT sum(total_price) AS Total_Sales FROM sales
+    WHERE product_category = '';</textarea>
+                <textarea id="step-5-sql-backup" style="display:none;">SELECT sum(total_price) AS Total_Sales FROM sales
+    WHERE product_category = '';</textarea>
+            </div>
+            <div style="text-align:right; margin-top:5px">
+                <button id="step-5-sql-btn" type="button"  onclick="
+                    let ta = document.getElementById('step-5-sql-ta');
+                    ta.select();
+                    ta.setSelectionRange(0, ta.value.length);
+                    navigator.clipboard.writeText(ta.value);">Copy</button>
+            </div>
+        </div>
+        <div id="step-5-after_codebox_instruction" style="margin-bottom:1em"></div></div><hr>
+<div id="step-6-wrapper" style="width:800px;"><div id="step-6-instruction" style="margin-bottom:1em"><h2><img class="image-icon-inline" src="https://s3.us-west-2.amazonaws.com/files.training.databricks.com/images/step-icon_small.png" alt="heading-icon" />
+Organizing Queries, Alerts, and Dashboards</h2>
+    <div class="instructions-div">
+    <p>Queries, alerts (we talk about alerts in a few minutes), and dashboards can be organized in a folder structure to help you keep track of where your work is located.</p>
+    <ol start="1">
+        <li>Click on "Workspace" in the sidebar menu</li>
+    </ol>
+    <p>You are taken to your home folder. You can see the dashboard we created in this lesson and any other workspace objects that you have saved.</p>
+    <ol start="2">
+        <li>Click "Create"</li>
+    </ol>
+    <p>Note all of the items you can create from this menu.</p>
+    <ol start="3">
+        <li>Select "Folder"</li>
+        <li>Name the folder "My Great Project", and click "Create"</li>
+        <li>After the folder is created, drag and drop the dashboard you just created in this lesson onto the new folder</li>
+        <li>Click the folder name, and verify that the dashboard has moved to this folder</li>
+    </ol>
+    <p>You can nest folders however you want, whether by project, queries that act on bronze data, silver data, or however else you see fit.</p> 
+    </div>
+        <div style="display: none;">
+            <div>
+                <textarea id="step-6-test-ta" style="width:100%; padding:10px; overflow-x:auto" rows="2"></textarea>
+                <textarea id="step-6-test-backup" style="display:none;"></textarea>
+            </div>
+            <div style="text-align:right; display: none; margin-top:5px">
+                <button id="step-6-test-show-btn" type="button" style="display:none;" 
+                        onclick="document.getElementById('step-6-sql').style.display = 'block';">Show Answer</button>
+                <button id="step-6-test-btn" type="button"  onclick="
+                    let ta = document.getElementById('step-6-test-ta');
+                    ta.select();
+                    ta.setSelectionRange(0, ta.value.length);
+                    navigator.clipboard.writeText(ta.value);">Copy</button>
+            </div>
+        </div>
+          
+        <div id="step-6-sql" style="width:800px; display: none;">
+            <div>
+                <textarea id="step-6-sql-ta" style="width:100%; padding:10px" rows="2"></textarea>
+                <textarea id="step-6-sql-backup" style="display:none;"></textarea>
+            </div>
+            <div style="text-align:right; margin-top:5px">
+                <button id="step-6-sql-btn" type="button"  onclick="
+                    let ta = document.getElementById('step-6-sql-ta');
+                    ta.select();
+                    ta.setSelectionRange(0, ta.value.length);
+                    navigator.clipboard.writeText(ta.value);">Copy</button>
+            </div>
+        </div>
+        <div id="step-6-after_codebox_instruction" style="margin-bottom:1em"></div></div><script>
+            
+            function answerIs(self, expected) {
+                if (self.value === "") {
+                    self.style.backgroundColor="#ffffff";
+                } else if (self.value.toLowerCase().includes(expected)) {
+                    self.style.backgroundColor="#7ffe78";
+                } else {
+                    self.style.backgroundColor="#ffb9bb";
+                }
+            }
+        
+            function loaded() {
+                let data = document.cookie;
+                if (data != null && data.trim() !== "") {
+                    let parts = data.split(";");
+                    for (let i = 0; i < parts.length; i++) {
+                        let key_value = parts[i].trim();
+                        let key = key_value.split("=")[0].trim();
+                        let value = key_value.split("=")[1].trim();
+                        if (value !== "n/a") {
+                            if (key === "dawd_catalog_name") {
+                                document.getElementById("catalog_name").value = value;
+                            } else if (key === "dawd_username") {
+                                document.getElementById("username").value = value;
+                            } else {
+                                console.log("Unknown cookie: "+key);
+                            }
+                        }
+                    }
+                }
+                update();
+            }
+            function update() {      
+                let catalog_name = document.getElementById("catalog_name").value;
+                let username = document.getElementById("username").value;
+                let ids = ['step-1', 'step-2', 'step-3', 'step-4', 'step-5', 'step-6'];
+
+                if (catalog_name === null || username === null || 
+                    catalog_name === "" || username === "" || 
+                    catalog_name == "n/a" || username === "n/a") {
+                    for (let i = 0; i < ids.length; i++) {
+                        document.getElementById(ids[i]+"-test-ta").disabled = true;
+                        document.getElementById(ids[i]+"-sql-ta").disabled = true;
+
+                        document.getElementById(ids[i]+"-test-btn").disabled = true;
+                        document.getElementById(ids[i]+"-sql-btn").disabled = true;
+
+                        document.getElementById(ids[i]+"-test-ta").value = document.getElementById(ids[i]+"-test-backup").value
+                        document.getElementById(ids[i]+"-sql-ta").value = document.getElementById(ids[i]+"-sql-backup").value
+                    }
+                } else if (catalog_name == "n/a" || username === "n/a") {
+                    for (let i = 0; i < ids.length; i++) {
+                        document.getElementById(ids[i]+"-test-ta").disabled = false;
+                        document.getElementById(ids[i]+"-sql-ta").disabled = false;
+
+                        document.getElementById(ids[i]+"-test-btn").disabled = false;
+                        document.getElementById(ids[i]+"-sql-btn").disabled = false;
+                    }    
+                } else {
+                    let illegals = ["<",">","\"","'","\\","/"]; 
+                    for (let i= 0; i < illegals.length; i++) {
+                        if (catalog_name.includes(illegals[i])) {
+                            alert("Please double check your catalog name.\nIt cannot not include the " + illegals[i] + " symbol.");
+                            return;
+                        }
+                        if (username.includes(illegals[i])) {
+                            alert("Please double check your username.\nIt cannot not include the " + illegals[i] + " symbol.");
+                            return;
+                        }
+                    }
+                    if (catalog_name.includes("@")) {
+                        alert("Please double check your catalog name.\nIt should not include the @ symbol.");
+                        return;
+                    }
+                    if (username.includes("@") === false) {
+                        alert("Please double check your username.\nIt should include the @ symbol.");
+                        return;
+                    }
+                    
+                    for (let i = 0; i < ids.length; i++) {
+                        document.getElementById(ids[i]+"-test-ta").disabled = false;
+                        document.getElementById(ids[i]+"-sql-ta").disabled = false;
+
+                        document.getElementById(ids[i]+"-test-btn").disabled = false;
+                        document.getElementById(ids[i]+"-sql-btn").disabled = false;
+
+                        document.getElementById(ids[i]+"-test-ta").value = document.getElementById(ids[i]+"-test-backup").value
+                                                                                   .replaceAll("{catalog_name}", catalog_name)
+                                                                                   .replaceAll("{username}", username);
+
+                        document.getElementById(ids[i]+"-sql-ta").value = document.getElementById(ids[i]+"-sql-backup").value
+                                                                                  .replaceAll("{catalog_name}", catalog_name)
+                                                                                  .replaceAll("{username}", username);
+
+                        document.cookie = "dawd_catalog_name="+catalog_name;
+                        document.cookie = "dawd_username="+username;
+                    }
+                }
+            }
+        </script>
+        <hr style="margin-top:8em">
+        <div>
+            <div>&copy; 2023 Databricks, Inc. All rights reserved.</div>
+            <div>Apache, Apache Spark, Spark and the Spark logo are trademarks of the <a href="https://www.apache.org/">Apache Software Foundation</a>.</div>
+            <div style="margin-top:1em">
+                <div style="float:left">
+                    <a href="https://databricks.com/privacy-policy">Privacy Policy</a> | 
+                    <a href="https://databricks.com/terms-of-use">Terms of Use</a> | <a href="https://help.databricks.com/">Support</a>
+                </div>
+                <div style="float:right">N/A</div>
+            </div>               
+        </div></div></body></html>
