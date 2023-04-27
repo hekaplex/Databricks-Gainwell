@@ -8,6 +8,9 @@
 1. Shift left thinking
 #### Data Pipeline
 1. DBR Run time link
+1. Fix on Adv. DE Notebook  3.2
+1. VIOLATION of constraints options
+1. Spark Pandas UDF example
 1. Passing SQL Query as a variable
 	1. Avoid reruns of same code
 	1. spark.sql vs Spark SQL
@@ -25,4 +28,4 @@
 1. Markdown cheat sheet
 1. show al native spark file formats
 1. third paramter on split
-1. Venn diagram sof semi, anti join
+1. Venn diagrams of semi, anti join
