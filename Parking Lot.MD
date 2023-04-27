@@ -8,7 +8,9 @@
 1. Shift left thinking
 #### Data Pipeline
 1. DBR Run time link
-1. Fix on Adv. DE Notebook  3.2
+1. Fix on Adv. DE Notebook 3.2
+1. Fix on Adv. DE Notebook 5.1
+1. Fix on Adv. DE Notebook 6.2
 1. VIOLATION of constraints options
 1. Spark Pandas UDF example
 1. Passing SQL Query as a variable
