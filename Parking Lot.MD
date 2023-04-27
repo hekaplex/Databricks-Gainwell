@@ -8,6 +8,7 @@
 1. Shift left thinking
 #### Data Pipeline
 1. DBR Run time link
+1. Schema Evolution
 1. Fix on Adv. DE Notebook 3.2
 1. Fix on Adv. DE Notebook 5.1
 1. Fix on Adv. DE Notebook 6.2
