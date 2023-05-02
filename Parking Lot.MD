@@ -14,10 +14,11 @@
 1. Fix on Adv. DE Notebook 6.2
 1. VIOLATION of constraints options
 1. Spark Pandas UDF example
+1. create DDL schema from object schema
 1. Passing SQL Query as a variable
 	1. Avoid reruns of same code
 	1. spark.sql vs Spark SQL
-
+1. fix external events_extended
 ~~1. JDBC/ODBC Examples~~
 1. External library integration
 1. ~~Shallow Copy~~
