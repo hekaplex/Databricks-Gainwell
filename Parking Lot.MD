@@ -8,6 +8,7 @@
 1. Shift left thinking
 #### Data Pipeline
 1. DBR Run time link
+1. streaming queryname in SQL
 1. Schema Evolution
 1. Fix on Adv. DE Notebook 3.2
 1. Fix on Adv. DE Notebook 5.1
@@ -18,6 +19,7 @@
 1. create DDL schema from object schema
 1. UDAF sample in Python, SQL
 1. where is my regstered SQL UDF?
+1. Photon on ASP 4.1
 1. Passing SQL Query as a variable
 	1. Avoid reruns of same code
 	1. spark.sql vs Spark SQL
