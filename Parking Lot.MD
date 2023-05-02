@@ -17,9 +17,10 @@
 1. Passing SQL Query as a variable
 	1. Avoid reruns of same code
 	1. spark.sql vs Spark SQL
+
 ~~1. JDBC/ODBC Examples~~
 1. External library integration
-1. Shallow Copy
+1. ~~Shallow Copy~~
 #### Platform Management
 1. Partitions - Spark Configuration
 #### Machine Learning
@@ -29,6 +30,7 @@
 1. Dolly Demo
 #### Misc
 1. Markdown cheat sheet
+
 ~~1. show all native spark file formats~~
 1. third paramater on split
 1. Venn diagrams of semi, anti join
