@@ -14,7 +14,10 @@
 1. Fix on Adv. DE Notebook 6.2
 1. VIOLATION of constraints options
 1. Spark Pandas UDF example
+1. sped test count distinct vs approx_count_distinct
 1. create DDL schema from object schema
+1. UDAF sample in Python, SQL
+1. where is my regstered SQL UDF?
 1. Passing SQL Query as a variable
 	1. Avoid reruns of same code
 	1. spark.sql vs Spark SQL
