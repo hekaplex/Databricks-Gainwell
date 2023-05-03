@@ -16,26 +16,28 @@
     1. [Databricks CI/CD](https://docs.databricks.com/dev-tools/ci-cd/ci-cd-jenkins.html)
 1. [VIOLATION of constraints options](https://docs.databricks.com/delta-live-tables/sql-ref.html)
 ### New Examples in Repo
-1. [Partitions - Spark Configuration](https://adb-4994874874414839.19.azuredatabricks.net/?o=4994874874414839#notebook/1730568841888495/command/1730568841888515)
+1. [Partitions - Spark Configuration](https://github.com/hekaplex/Databricks-Gainwell/blob/master/Parking-Lot-Items/Parking%20Lot.py)
 1. [Markdown cheat sheet](https://github.com/hekaplex/Databricks-Gainswell/Parking-Lot-Items/Markdown-Examples.MD )
-1. [Venn diagrams of semi, anti join](https://adb-4994874874414839.19.azuredatabricks.net/?o=4994874874414839#notebook/1730568841888495/command/1730568841888515)
-1. [third parameter on split](https://adb-4994874874414839.19.azuredatabricks.net/?o=4994874874414839#notebook/1730568841888495/command/1730568841888515)
-1. [create DDL schema from object schema](https://adb-4994874874414839.19.azuredatabricks.net/?o=4994874874414839#notebook/1730568841888495/command/1730568841888515)
+1. [Venn diagrams of semi, anti join](https://github.com/hekaplex/Databricks-Gainwell/blob/master/Parking-Lot-Items/Parking%20Lot.py)
+1. [third parameter on split](https://github.com/hekaplex/Databricks-Gainwell/blob/master/Parking-Lot-Items/Parking%20Lot.py)
+1. [create DDL schema from object schema](https://github.com/hekaplex/Databricks-Gainwell/blob/master/Parking-Lot-Items/Parking%20Lot.py)
 
-### Demos to Find
-1. Schema Evolution
+### Demos Requested - READY
 1. Spark Pandas UDF example
-1. UDAF sample in Python, SQL
 1. MLFlow
 1. Feature Store
+### Demos Requested - TODO
+1. Schema Evolution
+1. UDAF sample in Python, SQL
 1. Dolly Demo
 ### Fixes in Examples in Repo
-1. Photon on ASP 4.1
+1. Speed test on ASP 4.1
+    1. Photon vs non-Photon
+    1. speed test count distinct vs approx_count_distinct
 1. Fix on Adv. DE Notebook 3.2
 1. Fix on Adv. DE Notebook 5.1
 1. Fix on Adv. DE Notebook 6.2
 1. fix external events_extended
-1. speed test count distinct vs approx_count_distinct
 ### Parking Lot Items TODO
 1. where is my regstered SQL UDF?
 1. VS Code Python programmatic Spark sesion build
