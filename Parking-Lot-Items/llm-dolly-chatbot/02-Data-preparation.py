@@ -80,6 +80,10 @@
 
 # COMMAND ----------
 
+# MAGIC %fs head /dbdemos/product/llm/gardening/raw/Posts.xml
+
+# COMMAND ----------
+
 # MAGIC %md
 # MAGIC
 # MAGIC ## 2/ Clean & prepare our gardenig questions and best answers 
@@ -98,14 +102,19 @@
 # COMMAND ----------
 
 # DBTITLE 1,Review our raw Q&A dataset
-gardening_raw_path = demo_path+"/gardening/raw"
+gardening_raw_path = "/dbdemos/product/llm/gardening/raw"
 print(f"loading raw xml dataset under {gardening_raw_path}")
 raw_gardening = spark.read.format("xml").option("rowTag", "row").load(f"{gardening_raw_path}/Posts.xml")
 display(raw_gardening)
 
 # COMMAND ----------
 
+raw_gardening.withColumnRenamed
+
+# COMMAND ----------
+
 from bs4 import BeautifulSoup
+from pyspark.sql.functions import *
 
 #UDF to transform html content as text
 @pandas_udf("string")
@@ -116,7 +125,8 @@ gardening_df =(raw_gardening
                   .filter("_Score >= 5") # keep only good answer/question
                   .filter(length("_Body") <= 1000) #remove too long questions
                   .withColumn("body", html_to_text("_Body")) #Convert html to text
-                  .withColumnsRenamed({"_Id": "id", "_ParentId": "parent_id"})
+                  .withColumnRenamed("_Id","id")
+                  .withColumnRenamed("_ParentId","parent_id")
                   .select("id", "body", "parent_id"))
 
 # Save 'raw' content for later loading of questions
@@ -126,6 +136,7 @@ display(spark.table("gardening_dataset"))
 # COMMAND ----------
 
 # DBTITLE 1,Assemble questions and answers
+from pyspark.sql import functions as F
 gardening_df = spark.table("gardening_dataset")
 
 # Self-join to assemble questions and answers
@@ -206,10 +217,19 @@ hf_embed = HuggingFaceEmbeddings(model_name="sentence-transformers/all-mpnet-bas
 
 # COMMAND ----------
 
+def is_folder_empty(dir_name):
+    import os
+    if os.path.exists(dir_name) and os.path.isdir(dir_name):
+        return not os.listdir(dir_name)
+    else:
+        raise Exception(f"Given output directory {dir_name} doesn't exist")
+
+# COMMAND ----------
+
 # DBTITLE 1,Prepare our database storage location (in dbfs)
 # Prepare a directory to store the document database. Any path on `/dbfs` will do.
 dbutils.widgets.dropdown("reset_vector_database", "false", ["false", "true"], "Recompute embeddings for chromadb")
-gardening_vector_db_path = demo_path+"/vector_db"
+gardening_vector_db_path = gardening_raw_path+"/vector_db"
 
 # Don't recompute the embeddings if the're already available
 compute_embeddings = dbutils.widgets.get("reset_vector_database") == "true" or is_folder_empty(gardening_vector_db_path)
