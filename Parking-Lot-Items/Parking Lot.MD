@@ -21,20 +21,24 @@
 1. [Venn diagrams of semi, anti join](https://github.com/hekaplex/Databricks-Gainwell/blob/master/Parking-Lot-Items/Parking%20Lot.py)
 1. [third parameter on split](https://github.com/hekaplex/Databricks-Gainwell/blob/master/Parking-Lot-Items/Parking%20Lot.py)
 1. [create DDL schema from object schema](https://github.com/hekaplex/Databricks-Gainwell/blob/master/Parking-Lot-Items/Parking%20Lot.py)
+1. [UDAF sample in Python, SQL](https://github.com/hekaplex/Databricks-Gainwell/blob/master/Parking-Lot-Items/Parking%20Lot.py)
 
 ### Demos/Examples Requested - READY
-1. Spark Pandas UDF example
+1. ~~Spark Pandas UDF example~~
+1. ~~where is my regstered SQL UDF?~~
 1. MLFlow
 1. Feature Store
 1. Schema Evolution
-1. where is my regstered SQL UDF?
+    1. [AutoLoader](https://docs.databricks.com/ingestion/auto-loader/schema.html)
+    1. [Spark](https://docs.databricks.com/external-data/json.html)
 1. Dolly Demo
-1. UDAF sample in Python, SQL
-1. VS Code Python programmatic Spark sesion build
-    1. CI/CD between three environments
-    1. no dbx - YAML & CI/CD
-    1. UnityCatalog API is current alternate but need SparkSession
+1. ~~VS Code Python programmatic Spark session build~~
+    1. ~~CI/CD between three environments~~
+    1. ~~no dbx - YAML & CI/CD~~
+    1. ~~UnityCatalog API is current alternate but need SparkSession~~
 ## Parking Lot TODO
+1. Mini-Dolly 
+1. non-PAT based authentication: ETA?
 ### Fixes in Examples in Repo
 1. Speed test on ASP 4.1
     1. Photon vs non-Photon
