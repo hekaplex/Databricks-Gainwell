@@ -190,4 +190,72 @@ partitioned_rdd = rdd.partitionBy(2, lambda x: x % 2)
 
 # COMMAND ----------
 
+# MAGIC %md
+# MAGIC ### SQL UDAF
+
+# COMMAND ----------
+
+# MAGIC %scala
+# MAGIC import org.apache.spark.sql.{Encoder, Encoders, SparkSession}
+# MAGIC import org.apache.spark.sql.expressions.Aggregator
+# MAGIC import org.apache.spark.sql.functions
+# MAGIC
+# MAGIC case class Average(var sum: Long, var count: Long)
+# MAGIC
+# MAGIC object MyAverage extends Aggregator[Long, Average, Double] {
+# MAGIC   // A zero value for this aggregation. Should satisfy the property that any b + zero = b
+# MAGIC   def zero: Average = Average(0L, 0L)
+# MAGIC   // Combine two values to produce a new value. For performance, the function may modify `buffer`
+# MAGIC   // and return it instead of constructing a new object
+# MAGIC   def reduce(buffer: Average, data: Long): Average = {
+# MAGIC     buffer.sum += data
+# MAGIC     buffer.count += 1
+# MAGIC     buffer
+# MAGIC   }
+# MAGIC   // Merge two intermediate values
+# MAGIC   def merge(b1: Average, b2: Average): Average = {
+# MAGIC     b1.sum += b2.sum
+# MAGIC     b1.count += b2.count
+# MAGIC     b1
+# MAGIC   }
+# MAGIC   // Transform the output of the reduction
+# MAGIC   def finish(reduction: Average): Double = reduction.sum.toDouble / reduction.count
+# MAGIC   // The Encoder for the intermediate value type
+# MAGIC   def bufferEncoder: Encoder[Average] = Encoders.product
+# MAGIC   // The Encoder for the final output value type
+# MAGIC   def outputEncoder: Encoder[Double] = Encoders.scalaDouble
+# MAGIC }
+# MAGIC
+# MAGIC // Register the function to access it
+# MAGIC spark.udf.register("myAverage", functions.udaf(MyAverage))
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC SHOW USER FUNCTIONS;
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC CREATE OR REPLACE TABLE employees (name string, salary long);
+# MAGIC
+# MAGIC INSERT INTO employees (name, salary) VALUES ("Michael" , 3000);
+# MAGIC INSERT INTO employees (name, salary) VALUES (   "Andy" , 4500);
+# MAGIC INSERT INTO employees (name, salary) VALUES ( "Justin" , 3500);
+# MAGIC INSERT INTO employees (name, salary) VALUES (  "Berta" , 4000);
+# MAGIC SELECT * FROM employees;
+
+# COMMAND ----------
+
+# MAGIC %scala
+# MAGIC val result = spark.sql("SELECT myaverage(salary) as average_salary FROM employees")
+# MAGIC result.show()
+
+# COMMAND ----------
+
+# MAGIC %sql
+# MAGIC SELECT myaverage(salary) as average_salary FROM employees;
+
+# COMMAND ----------
+
 
