@@ -30,6 +30,10 @@
 1. where is my regstered SQL UDF?
 1. Dolly Demo
 1. UDAF sample in Python, SQL
+1. VS Code Python programmatic Spark sesion build
+    1. CI/CD between three environments
+    1. no dbx - YAML & CI/CD
+    1. UnityCatalog API is current alternate but need SparkSession
 ### Fixes in Examples in Repo
 1. Speed test on ASP 4.1
     1. Photon vs non-Photon
@@ -38,8 +42,3 @@
 1. Fix on Adv. DE Notebook 5.1
 1. Fix on Adv. DE Notebook 6.2
 1. fix external events_extended
-### Parking Lot Items TODO
-1. VS Code Python programmatic Spark sesion build
-1. CI/CD between three environments
-    1. no dbx - YAML & CI/CD
-    1. UnityCatalog API is current alternate but need SparkSession
