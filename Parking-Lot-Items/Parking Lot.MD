@@ -12,7 +12,7 @@
 ### External Documentation    
 1. [DBR Run time link](https://docs.databricks.com/release-notes/runtime/releases.html)
 1. [External library integration](https://docs.databricks.com/libraries/index.html)
-1. [Shift Left Thinking](https://www.stickyminds.com/sites/default/files/shared/2018-12-10%20ArthurHicken%20The%20Shift-Left%20Approach%20to%20Software%20Testing%20image3.png)
+1. ![Shift Left Thinking](https://www.stickyminds.com/sites/default/files/shared/2018-12-10%20ArthurHicken%20The%20Shift-Left%20Approach%20to%20Software%20Testing%20image3.png)
     1. [Databricks CI/CD](https://docs.databricks.com/dev-tools/ci-cd/ci-cd-jenkins.html)
 1. [VIOLATION of constraints options](https://docs.databricks.com/delta-live-tables/sql-ref.html)
 ### New Examples in Repo
