@@ -36,10 +36,9 @@
     1. ~~CI/CD between three environments~~
     1. ~~no dbx - YAML & CI/CD~~
     1. ~~UnityCatalog API is current alternate but need SparkSession~~
+1. [Mini-Dolly Instructions for Training](https://github.com/databrickslabs/dolly#getting-started-with-response-generation)
+1. non-PAT based authentication: ETA?  [OAuth user-to-machine (U2M) authentication](https://docs.databricks.com/dev-tools/auth.html#id10)
 ## Parking Lot TODO
-1. Mini-Dolly 
-1. non-PAT based authentication: ETA?
-### Fixes in Examples in Repo
 1. Speed test on ASP 4.1
     1. Photon vs non-Photon
     1. speed test count distinct vs approx_count_distinct
